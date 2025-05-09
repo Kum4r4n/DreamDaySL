@@ -1,0 +1,36 @@
+﻿@model DreamDay.Models.WeddingFormModel
+@{
+    ViewBag.Title = "Create Wedding";
+}
+<h2>Create Your Wedding</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.PartnerOneName)
+        @Html.TextBoxFor(m => m.PartnerOneName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.PartnerOneName, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.PartnerTwoName)
+        @Html.TextBoxFor(m => m.PartnerTwoName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.PartnerTwoName, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.WeddingDate)
+        @Html.TextBoxFor(m => m.WeddingDate, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+        @Html.ValidationMessageFor(m => m.WeddingDate, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.TotalBudget)
+        @Html.TextBoxFor(m => m.TotalBudget, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.TotalBudget, "", new { @class = "text-danger" })
+    </div>
+
+    <button type="submit" class="btn btn-success">Create Wedding</button>
+}

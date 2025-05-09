@@ -1,0 +1,39 @@
+﻿@model DreamDay.Models.WeddingDashboard
+@{
+    ViewBag.Title = "Dashboard";
+}
+
+@if (Model == null)
+{
+    <div class="text-center">
+        <h3>Welcome to DreamDay!</h3>
+        <p>You haven't created a wedding plan yet.</p>
+        <a class="btn btn-primary" href="@Url.Action("Create", "Wedding")">Create Your Wedding</a>
+    </div>
+}
+else
+{
+    <h2>Welcome, @Model.PartnerOneName & @Model.PartnerTwoName</h2>
+    <p><strong>Wedding Date:</strong> @Model.WeddingDate.ToShortDateString()</p>
+    <p><strong>Total Budget:</strong> @Model.TotalBudget.ToString("C")</p>
+
+    <h4>To-Do List</h4>
+    @if (Model.ToDoList != null && Model.ToDoList.Any())
+    {
+        <ul>
+            @foreach (var item in Model.ToDoList)
+            {
+                <li>@item</li>
+            }
+        </ul>
+    }
+    else
+    {
+        <p>No tasks yet.</p>
+    }
+
+    <div class="mt-4">
+        <a href="@Url.Action("Edit", "Wedding", new { id = Model.WeddingId })" class="btn btn-secondary">Edit Wedding</a>
+        <a href="@Url.Action("Delete", "Wedding", new { id = Model.WeddingId })" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete your wedding?');">Delete Wedding</a>
+    </div>
+}
