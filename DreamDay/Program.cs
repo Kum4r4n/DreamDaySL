@@ -12,6 +12,10 @@ builder.Services.AddScoped<LoginService>();
 builder.Services.AddScoped<RegisterService>();
 builder.Services.AddScoped<DashboardService>();
 builder.Services.AddScoped<WeddingService>();
+builder.Services.AddScoped<ChecklistService>();
+builder.Services.AddScoped<BudgetService>();
+builder.Services.AddScoped<GuestService>();
+builder.Services.AddScoped<VendorService>();
 
 builder.Services.AddDbContext<ApplicaitonDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("SQL"), sqlOptions =>

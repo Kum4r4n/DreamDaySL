@@ -14,6 +14,6 @@ namespace DreamDay.Models
 
         public bool IsCompleted { get; set; }
 
-        public int WeddingId { get; set; }
+        public Guid WeddingId { get; set; }
     }
 }

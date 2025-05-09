@@ -1,0 +1,30 @@
+﻿@model List<DreamDay.Models.GuestModel>
+@{
+    ViewBag.Title = "Guest List";
+}
+<h2>Guest List</h2>
+<a href="@Url.Action("Create", "Guest")" class="btn btn-primary mb-2">Add Guest</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Meal Preference</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var guest in Model)
+        {
+            <tr>
+                <td>@guest.Name</td>
+                <td>@guest.Email</td>
+                <td>@guest.MealPreference</td>
+                <td>
+                    <a href="@Url.Action("Edit", "Guest", new { id = guest.Id })" class="btn btn-sm btn-warning">Edit</a>
+                    <a href="@Url.Action("Delete", "Guest", new { id = guest.Id })" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this guest?');">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

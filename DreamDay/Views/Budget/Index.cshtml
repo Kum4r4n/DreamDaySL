@@ -1,0 +1,35 @@
+﻿@model List<DreamDay.Models.BudgetItemModel>
+@{
+    ViewBag.Title = "Budget Tracker";
+}
+<h2>Budget Tracker</h2>
+<p><strong>Total Budget:</strong> @ViewBag.TotalBudget.ToString("C")</p>
+<p><strong>Allocated Total:</strong> @ViewBag.TotalAllocated.ToString("C")</p>
+<p><strong>Spent Total:</strong> @ViewBag.TotalSpent.ToString("C")</p>
+<a href="@Url.Action("Create", "Budget")" class="btn btn-primary mb-2">Add Budget Item</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Category</th>
+            <th>Description</th>
+            <th>Allocated Amount</th>
+            <th>Spent Amount</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Category</td>
+                <td>@item.Description</td>
+                <td>@item.AllocatedAmount.ToString("C")</td>
+                <td>@item.SpentAmount.ToString("C")</td>
+                <td>
+                    <a href="@Url.Action("Edit", "Budget", new { id = item.Id })" class="btn btn-sm btn-warning">Edit</a>
+                    <a href="@Url.Action("Delete", "Budget", new { id = item.Id })" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?');">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

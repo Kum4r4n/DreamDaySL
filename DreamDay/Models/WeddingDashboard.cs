@@ -10,7 +10,7 @@
         public decimal TotalBudget { get; set; }
 
         // To-do list for the couple's dashboard
-        public List<string> ToDoList { get; set; }
+        public List<ChecklistItemModel> ToDoList { get; set; }
 
         // You can extend this later with:
         // public int GuestCount { get; set; }

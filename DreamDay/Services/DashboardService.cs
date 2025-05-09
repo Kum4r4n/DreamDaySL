@@ -29,7 +29,15 @@ namespace DreamDay.Services
                 WeddingDate = wedding.WeddingDate,
                 TotalBudget = wedding.TotalBudget,
                 ToDoList = wedding.CheckListItems
-                                .Select(c => c.Name)
+                                .Select(c => new ChecklistItemModel() {
+                                    
+                                    Id = c.Id,
+                                    Name = c.Name,
+                                    IsCompleted = c.IsCompleted,
+                                    DueDate = c.DueDate,
+                                    Description = c.Description,
+                                    WeddingId = c.WeddingId
+                                })
                                 .ToList()
             };
 

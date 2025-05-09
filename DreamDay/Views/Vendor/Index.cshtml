@@ -1,0 +1,34 @@
+﻿@model List<DreamDay.Models.VendorModel>
+@{
+    ViewBag.Title = "Vendors & Venues";
+}
+<h2>Vendors & Venues</h2>
+<form method="get" class="mb-3">
+    <div class="input-group">
+        <input type="text" name="search" class="form-control" placeholder="Search vendors..." value="@ViewBag.Search" />
+        <button type="submit" class="btn btn-primary">Search</button>
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Description</th>
+            <th>Price Estimate</th>
+            <th>Contact Info</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var v in Model)
+        {
+            <tr>
+                <td>@v.Name</td>
+                <td>@v.Category</td>
+                <td>@v.Description</td>
+                <td>@v.PriceEstimate.ToString("C")</td>
+                <td>@v.ContactInfo</td>
+            </tr>
+        }
+    </tbody>
+</table>
