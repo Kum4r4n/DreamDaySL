@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Assign Planner";
+    Guid weddingId = ViewBag.WeddingId;
+    var planners = ViewBag.Planners as List<SelectListItem>;
+}
+<h2>Assign Planner</h2>
+<form asp-action="Assign" method="post">
+    <input type="hidden" name="weddingId" value="@weddingId" />
+    <div class="form-group">
+        <label for="plannerId">Select Planner:</label>
+        <select id="plannerId" name="plannerId" class="form-control" asp-items="@planners"></select>
+    </div>
+    <button type="submit" class="btn btn-success mt-2">Assign</button>
+    <a asp-action="AssignPlanner" class="btn btn-secondary mt-2">Cancel</a>
+</form>

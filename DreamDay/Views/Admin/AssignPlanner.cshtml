@@ -1,0 +1,28 @@
+﻿@model List<WeddingAdminViewModel>
+@{
+    ViewBag.Title = "Unassigned Weddings";
+}
+<h2>Unassigned Weddings</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Partner One</th>
+            <th>Partner Two</th>
+            <th>Wedding Date</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var wedding in Model)
+        {
+            <tr>
+                <td>@wedding.PartnerOneName</td>
+                <td>@wedding.PartnerTwoName</td>
+                <td>@wedding.WeddingDate.ToShortDateString()</td>
+                <td>
+                    <a class="btn btn-primary" asp-action="Assign" asp-route-weddingId="@wedding.WeddingId">Assign Planner</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

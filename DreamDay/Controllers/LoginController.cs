@@ -23,6 +23,9 @@ namespace DreamDay.Controllers
                 if(User.Claims.First(x=>x.Type == ClaimTypes.Role).Value == Role.PLANNER.ToString())
                 {
                     return RedirectToAction("Dashboard", "Planner");
+                }else if(User.Claims.First(x => x.Type == ClaimTypes.Role).Value == Role.ADMIN.ToString())
+                {
+                    return RedirectToAction("Dashboard", "Admin");
                 }
                 return RedirectToAction("Index", "Dashboard");
             }
@@ -51,6 +54,10 @@ namespace DreamDay.Controllers
             if (user.Role == Role.PLANNER)
             {
                 return RedirectToAction("Dashboard", "Planner");
+
+            }else if (user.Role == Role.ADMIN)
+            {
+                return RedirectToAction("Dashboard", "Admin");
             }
 
             return RedirectToAction("Index","Dashboard");

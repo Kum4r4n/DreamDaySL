@@ -59,11 +59,20 @@
                                 </li>
                             
                             }
-                            else
+                            else if(userRole == Role.PLANNER.ToString())
                             {
 
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-controller="Planner" asp-action="Dashboard">Planner Dashboard</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Admin" asp-action="Dashboard">Admin Dashboard</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-controller="Admin" asp-action="AssignPlanner">Assign Planner</a>
                                 </li>
                             }
 
