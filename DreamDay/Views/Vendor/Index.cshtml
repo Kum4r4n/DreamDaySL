@@ -1,34 +1,83 @@
-﻿@model List<DreamDay.Models.VendorModel>
+﻿@model Tuple<List<VendorModel>, List<VendorModel>>
 @{
-    ViewBag.Title = "Vendors & Venues";
+    ViewBag.Title = "Assign Vendors";
+    Guid weddingId = ViewBag.WeddingId;
+    string? search = ViewBag.Search as string;
+    var assigned = Model.Item1;
+    var available = Model.Item2;
 }
-<h2>Vendors & Venues</h2>
-<form method="get" class="mb-3">
-    <div class="input-group">
-        <input type="text" name="search" class="form-control" placeholder="Search vendors..." value="@ViewBag.Search" />
-        <button type="submit" class="btn btn-primary">Search</button>
+
+<h2 class="text-center">Assign Vendors to Your Wedding</h2>
+<div class="row">
+    <div class="col-md-6 border-end pe-4">
+        <h4>Assigned Vendors</h4>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Contact</th>
+                    <th>Estimated cost</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var vendor in assigned)
+                {
+                    <tr>
+                        <td>@vendor.Name</td>
+                        <td>@vendor.Category</td>
+                        <td>@vendor.ContactInfo</td>
+                        <td>@vendor.PriceEstimate.ToString("C")</td>
+                        <td>
+                            <form asp-action="Remove" method="post" class="d-inline">
+                                <input type="hidden" name="weddingId" value="@weddingId" />
+                                <input type="hidden" name="vendorId" value="@vendor.Id" />
+                                <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
-</form>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Category</th>
-            <th>Description</th>
-            <th>Price Estimate</th>
-            <th>Contact Info</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var v in Model)
-        {
-            <tr>
-                <td>@v.Name</td>
-                <td>@v.Category</td>
-                <td>@v.Description</td>
-                <td>@v.PriceEstimate.ToString("C")</td>
-                <td>@v.ContactInfo</td>
-            </tr>
-        }
-    </tbody>
-</table>
+    <div class="col-md-6 ps-4">
+        <h4>Available Vendors</h4>
+        <form method="get" class="mb-3">
+            <input type="hidden" name="weddingId" value="@weddingId" />
+            <div class="input-group">
+                <input type="text" name="search" value="@search" class="form-control" placeholder="Search vendors...">
+                <button type="submit" class="btn btn-outline-secondary">Search</button>
+            </div>
+        </form>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Contact</th>
+                    <th>Estimated cost</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var vendor in available)
+                {
+                    <tr>
+                        <td>@vendor.Name</td>
+                        <td>@vendor.Category</td>
+                        <td>@vendor.ContactInfo</td>
+                        <td>@vendor.PriceEstimate.ToString("C")</td>
+                        <td>
+                            <form asp-action="Assign" method="post" class="d-inline">
+                                <input type="hidden" name="weddingId" value="@weddingId" />
+                                <input type="hidden" name="vendorId" value="@vendor.Id" />
+                                <button type="submit" class="btn btn-primary btn-sm">Assign</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

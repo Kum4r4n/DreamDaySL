@@ -4,6 +4,7 @@ using DreamDay.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DreamDay.Migrations
 {
     [DbContext(typeof(ApplicaitonDbContext))]
-    partial class ApplicaitonDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250510141153_add-wedding-vendor")]
+    partial class addweddingvendor
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,9 +43,6 @@ namespace DreamDay.Migrations
 
                     b.Property<decimal>("SpentAmount")
                         .HasColumnType("decimal(18,2)");
-
-                    b.Property<Guid?>("VendorId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("WeddingId")
                         .HasColumnType("uniqueidentifier");

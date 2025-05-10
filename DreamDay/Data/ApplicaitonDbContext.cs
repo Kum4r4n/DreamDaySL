@@ -16,6 +16,7 @@ public class ApplicaitonDbContext : DbContext
     public DbSet<User> Users { get; set; }
     public DbSet<Vendor> Vendors { get; set; }
     public DbSet<WeddingNote> WeddingNotes { get; set; }
+    public DbSet<WeddingVendor> WeddingVendors { get; set; }
 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

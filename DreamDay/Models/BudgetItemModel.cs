@@ -12,6 +12,7 @@ namespace DreamDay.Models
         [Required]
         public string? Description { get; set; }
         
+        public Guid? VendorId { get; set; }
 
         [Range(0, double.MaxValue)]
         public decimal AllocatedAmount { get; set; }

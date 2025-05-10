@@ -26,8 +26,15 @@
                 <td>@item.AllocatedAmount.ToString("C")</td>
                 <td>@item.SpentAmount.ToString("C")</td>
                 <td>
-                    <a href="@Url.Action("Edit", "Budget", new { id = item.Id })" class="btn btn-sm btn-warning">Edit</a>
-                    <a href="@Url.Action("Delete", "Budget", new { id = item.Id })" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?');">Delete</a>
+                    @if(item.VendorId == null)
+                    {
+                        <a href="@Url.Action("Edit", "Budget", new { id = item.Id })" class="btn btn-sm btn-warning">Edit</a>
+                        <a href="@Url.Action("Delete", "Budget", new { id = item.Id })" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?');">Delete</a>
+                    }
+                    else
+                    {
+                        <p>You can't edit or delete, This need to remove from vendor list</p>
+                    }
                 </td>
             </tr>
         }

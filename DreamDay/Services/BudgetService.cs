@@ -32,7 +32,8 @@ namespace DreamDay.Services
                 AllocatedAmount = s.AllocatedAmount,
                 SpentAmount = s.SpentAmount,
                 Description = s.Description,
-                WeddingId = s.WeddingId
+                WeddingId = s.WeddingId,
+                VendorId = s.VendorId
 
             }).ToList();
 
@@ -89,7 +90,8 @@ namespace DreamDay.Services
                 AllocatedAmount = budgetItem.AllocatedAmount,
                 SpentAmount = budgetItem.SpentAmount,
                 Description = budgetItem.Description,
-                WeddingId = budgetItem.WeddingId
+                WeddingId = budgetItem.WeddingId,
+                VendorId = budgetItem.VendorId
             };
 
             return model;

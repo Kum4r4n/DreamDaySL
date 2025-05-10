@@ -7,6 +7,8 @@ public class BudgetItem
     public decimal AllocatedAmount { get; set; }
     public decimal SpentAmount { get; set; }
     public string? Description { get; set; }
+
+    public Guid? VendorId { get; set; }
     public Guid WeddingId { get; set; }
     public Wedding Wedding { get; set; } = default!;
 }
