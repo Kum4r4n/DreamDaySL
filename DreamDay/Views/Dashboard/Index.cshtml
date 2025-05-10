@@ -17,6 +17,16 @@ else
     <p><strong>Wedding Date:</strong> @Model.WeddingDate.ToShortDateString()</p>
     <p><strong>Total Budget:</strong> @Model.TotalBudget.ToString("C")</p>
 
+    @if (Model.PlannerId != null)
+    {
+        <a class="btn btn-outline-secondary mb-3"
+           asp-controller="CoupleNotes"
+           asp-action="Index"
+           asp-route-weddingId="@Model.WeddingId">
+            Message Planner
+        </a>
+    }
+
     <h4>To-Do List</h4>
     @if (Model.ToDoList != null && Model.ToDoList.Any())
     {

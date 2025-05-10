@@ -21,8 +21,20 @@
                 <td>@wedding.PartnerTwoName</td>
                 <td>@wedding.WeddingDate.ToShortDateString()</td>
                 <td>@wedding.TotalBudget.ToString("C")</td>
-                <td>
-                    <a class="btn btn-sm btn-outline-primary" asp-controller="PlannerChecklist" asp-action="Index" asp-route-weddingId="@wedding.Id">Manage Checklist</a>
+                <td class="d-flex flex-column gap-1">
+                    <a class="btn btn-sm btn-outline-primary"
+                       asp-controller="PlannerChecklist"
+                       asp-action="Index"
+                       asp-route-weddingId="@wedding.Id">
+                        Manage Checklist
+                    </a>
+
+                    <a class="btn btn-sm btn-outline-secondary"
+                       asp-controller="PlannerNotes"
+                       asp-action="Index"
+                       asp-route-weddingId="@wedding.Id">
+                        Message Couple
+                    </a>
                 </td>
             </tr>
         }

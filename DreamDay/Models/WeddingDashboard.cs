@@ -9,6 +9,8 @@
         public DateTime WeddingDate { get; set; }
         public decimal TotalBudget { get; set; }
 
+        public Guid? PlannerId { get; set; }
+
         // To-do list for the couple's dashboard
         public List<ChecklistItemModel> ToDoList { get; set; }
 

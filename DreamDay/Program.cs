@@ -19,6 +19,7 @@ builder.Services.AddScoped<VendorService>();
 
 builder.Services.AddScoped<PlannerService>();
 builder.Services.AddScoped<PlannerChecklistService>();
+builder.Services.AddScoped<PlannerNotesService>();
 
 builder.Services.AddDbContext<ApplicaitonDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("SQL"), sqlOptions =>

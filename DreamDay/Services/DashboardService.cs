@@ -28,6 +28,7 @@ namespace DreamDay.Services
                 PartnerTwoName = wedding.PartnerTwoName,
                 WeddingDate = wedding.WeddingDate,
                 TotalBudget = wedding.TotalBudget,
+                PlannerId = wedding.PlannerId,
                 ToDoList = wedding.CheckListItems
                                 .Select(c => new ChecklistItemModel() {
                                     

@@ -1,0 +1,32 @@
+﻿@model List<DreamDay.Models.WeddingNoteModel>
+@{
+    ViewBag.Title = "Planner-Couple Notes";
+    Guid weddingId = ViewBag.WeddingId;
+    var currentRole = "PLANNER";
+}
+<h2>Planner-Couple Notes</h2>
+<a class="btn btn-sm btn-secondary mb-3"
+   asp-controller="Planner"
+   asp-action="Dashboard">
+    ← Back to Planner Dashboard
+</a>
+<form asp-action="PostNote" asp-controller="PlannerNotes" method="post">
+    <input type="hidden" name="WeddingId" value="@weddingId" />
+    <div class="form-group">
+        <textarea name="Message" class="form-control" placeholder="Write a message..." rows="3" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary mt-2">Send</button>
+</form>
+<hr />
+<div class="d-flex flex-column gap-2">
+    @foreach (var note in Model.OrderBy(n => n.Timestamp))
+    {
+        var isMe = note.SenderRole == currentRole;
+        <div class="d-flex @(isMe ? "justify-content-end" : "justify-content-start")">
+            <div class="border rounded p-2 mb-1" style="max-width: 60%; background-color: @(isMe ? "#d1e7dd" : "#f8f9fa")">
+                <p class="mb-1">@note.Message</p>
+                <small class="text-muted">@note.Timestamp.ToString("g") - @note.SenderRole</small>
+            </div>
+        </div>
+    }
+</div>

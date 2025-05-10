@@ -15,6 +15,7 @@ public class ApplicaitonDbContext : DbContext
     public DbSet<CheckListItem> CheckListItems { get; set; }
     public DbSet<User> Users { get; set; }
     public DbSet<Vendor> Vendors { get; set; }
+    public DbSet<WeddingNote> WeddingNotes { get; set; }
 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
