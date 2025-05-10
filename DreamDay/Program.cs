@@ -17,6 +17,9 @@ builder.Services.AddScoped<BudgetService>();
 builder.Services.AddScoped<GuestService>();
 builder.Services.AddScoped<VendorService>();
 
+builder.Services.AddScoped<PlannerService>();
+builder.Services.AddScoped<PlannerChecklistService>();
+
 builder.Services.AddDbContext<ApplicaitonDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("SQL"), sqlOptions =>
     {
@@ -32,7 +35,7 @@ builder.Services.AddAuthentication("DreamDay")
     {
         options.LoginPath = "/Login/Index";  
         options.LogoutPath = "/Login/Logout";
-        options.AccessDeniedPath = "/AccessDenied";
+        options.AccessDeniedPath = "/Login/Index";
     });
 
 builder.Services.AddAuthorization();

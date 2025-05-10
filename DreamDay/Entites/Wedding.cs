@@ -11,6 +11,10 @@ public class Wedding
 
     public Guid UserId { get; set; }
     public User User { get; set; } = default!;
+
+    public Guid? PlannerId { get; set; }
+    public User? Planner { get; set; }
+
     public ICollection<Guest> Guests { get; set; } = new List<Guest>();
     public ICollection<CheckListItem> CheckListItems { get; set; } = new List<CheckListItem>();
     public ICollection<BudgetItem> BudgetItems { get; set; } = new List<BudgetItem>();

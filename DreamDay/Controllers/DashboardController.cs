@@ -5,7 +5,7 @@ using System.Security.Claims;
 
 namespace DreamDay.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "COUPLE")]
     public class DashboardController : Controller
     {
         private readonly DashboardService _dashboardService;

@@ -1,8 +1,10 @@
 ﻿using DreamDay.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DreamDay.Controllers
 {
+    [Authorize(Roles = "COUPLE")]
     public class VendorController : Controller
     {
         private readonly Services.VendorService _vendorService;

@@ -38,6 +38,10 @@ public class RegisterController : Controller
         var identity = new ClaimsIdentity(claims, "DreamDay");
         var principal = new ClaimsPrincipal(identity);
         await HttpContext.SignInAsync("DreamDay", principal);
+        if (data.Role == Enums.Role.PLANNER)
+        {
+            return RedirectToAction("Dashboard", "Planner");
+        }
         return RedirectToAction("Index", "Dashboard");
     }
 }

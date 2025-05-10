@@ -1,4 +1,5 @@
-﻿using DreamDay.Models;
+﻿using DreamDay.Enums;
+using DreamDay.Models;
 using DreamDay.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
@@ -19,6 +20,10 @@ namespace DreamDay.Controllers
         {
             if (User.Identity?.IsAuthenticated ?? false)
             {
+                if(User.Claims.First(x=>x.Type == ClaimTypes.Role).Value == Role.PLANNER.ToString())
+                {
+                    return RedirectToAction("Dashboard", "Planner");
+                }
                 return RedirectToAction("Index", "Dashboard");
             }
             return View();
@@ -42,6 +47,12 @@ namespace DreamDay.Controllers
             var identity = new ClaimsIdentity(claims, "DreamDay");
             var principal = new ClaimsPrincipal(identity);
             await HttpContext.SignInAsync("DreamDay", principal);
+
+            if (user.Role == Role.PLANNER)
+            {
+                return RedirectToAction("Dashboard", "Planner");
+            }
+
             return RedirectToAction("Index","Dashboard");
 
         }

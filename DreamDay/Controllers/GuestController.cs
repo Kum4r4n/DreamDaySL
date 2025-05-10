@@ -10,7 +10,7 @@ using System.Security.Claims;
 
 namespace DreamDay.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "COUPLE")]
     public class GuestController : Controller
     {
         private readonly Services.GuestService _guestService;

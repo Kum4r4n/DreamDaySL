@@ -1,0 +1,30 @@
+﻿@model List<DreamDay.Models.PlannerWeddingViewModel>
+@{
+    ViewBag.Title = "Planner Dashboard";
+}
+<h2>Your Assigned Weddings</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Partner One</th>
+            <th>Partner Two</th>
+            <th>Date</th>
+            <th>Budget</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var wedding in Model)
+        {
+            <tr>
+                <td>@wedding.PartnerOneName</td>
+                <td>@wedding.PartnerTwoName</td>
+                <td>@wedding.WeddingDate.ToShortDateString()</td>
+                <td>@wedding.TotalBudget.ToString("C")</td>
+                <td>
+                    <a class="btn btn-sm btn-outline-primary" asp-controller="PlannerChecklist" asp-action="Index" asp-route-weddingId="@wedding.Id">Manage Checklist</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
