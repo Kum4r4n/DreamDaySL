@@ -1,6 +1,7 @@
 ﻿using DreamDay.Data;
 using DreamDay.Entites;
 using DreamDay.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace DreamDay.Services
@@ -19,8 +20,15 @@ namespace DreamDay.Services
             var user = await _dbContext.Users.SingleOrDefaultAsync(x => x.Email.ToLower() == loginModel.Email.ToLower()).ConfigureAwait(false);
             if (user == null)
                 throw new ArgumentException("User not found");
-            if (user.PasswordHash != loginModel.Password)
+
+
+            var hasher = new PasswordHasher<User>();
+
+            var result = hasher.VerifyHashedPassword(user, user.PasswordHash, loginModel.Password);
+
+            if (result == PasswordVerificationResult.Failed)
                 throw new ArgumentException("Invalid password");
+
             return user;
         }
     }

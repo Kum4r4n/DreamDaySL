@@ -1,6 +1,7 @@
 ﻿using DreamDay.Data;
 using DreamDay.Entites;
 using DreamDay.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace DreamDay.Services;
@@ -20,14 +21,16 @@ public class RegisterService
         if(user != null)
             throw new ArgumentException("User already exists");
 
+        var hasher = new PasswordHasher<User>();
         var newUser = new User()
         {
             Id = Guid.NewGuid(),
             Name = register.Name,
             Email = register.Email,
-            PasswordHash = register.Password,
             Role = register.Role
         };
+
+        newUser.PasswordHash = hasher.HashPassword(newUser, register.Password);
 
         _dbContext.Users.Add(newUser);
         await _dbContext.SaveChangesAsync().ConfigureAwait(false);
