@@ -16,6 +16,7 @@ builder.Services.AddScoped<ChecklistService>();
 builder.Services.AddScoped<BudgetService>();
 builder.Services.AddScoped<GuestService>();
 builder.Services.AddScoped<VendorService>();
+builder.Services.AddScoped<CoupleTimelineService>();
 
 builder.Services.AddScoped<PlannerService>();
 builder.Services.AddScoped<PlannerChecklistService>();

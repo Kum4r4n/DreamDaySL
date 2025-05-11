@@ -1,0 +1,25 @@
+﻿@model WeddingTimelineItemModel
+@{
+    ViewBag.Title = (Model == null || Model.Id == null) ? "Add Timeline Item" : "Edit Timeline Item";
+}
+<h2>@ViewBag.Title</h2>
+    <form asp-action="@((Model == null || Model.Id == null) ? "Create" : "Edit")" method="post">
+    @if ((Model == null || Model.Id == null))
+    {
+        @Html.HiddenFor(m => m.Id)
+    }
+    @Html.HiddenFor(m => m.WeddingId)
+    <div class="form-group">
+        <label>Time</label>
+        <input asp-for="Time" type="time" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Title</label>
+        <input asp-for="Title" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Description</label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+    </div>
+    <button type="submit" class="btn btn-success mt-2">Save</button>
+</form>

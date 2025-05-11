@@ -1,10 +1,12 @@
 ﻿using DreamDay.Enums;
 using DreamDay.Models;
 using DreamDay.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DreamDay.Controllers
 {
+    [Authorize(Roles = "COUPLE")]
     public class CoupleNotesController : Controller
     {
         private readonly DreamDay.Services.PlannerNotesService _plannerNotesService;

@@ -2,11 +2,13 @@
 using DreamDay.Enums;
 using DreamDay.Models;
 using DreamDay.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace DreamDay.Controllers
 {
+    [Authorize(Roles = "PLANNER")]
     public class PlannerNotesController : Controller
     {
         private readonly DreamDay.Services.PlannerNotesService _plannerNotesService;

@@ -1,0 +1,31 @@
+﻿@model List<WeddingTimelineItemModel>
+@{
+    ViewBag.Title = "Wedding Day Timeline";
+    Guid weddingId = ViewBag.WeddingId;
+}
+<h2>Wedding Day Timeline</h2>
+<a class="btn btn-success mb-3" asp-action="Create" asp-route-weddingId="@weddingId">Add Timeline Item</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Time</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Time.ToShortTimeString()</td>
+                <td>@item.Title</td>
+                <td>@item.Description</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger" onclick="return confirm('Delete this item?');">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
