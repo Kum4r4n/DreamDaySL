@@ -9,6 +9,8 @@ public class Guest
     public string? Email { get; set; }
     public MealPreference MealPreference { get; set; }
 
+    public bool IsAttending { get; set; }
+
     public Guid WeddingId { get; set; }
     public Wedding Wedding { get; set; } = default!;
 }

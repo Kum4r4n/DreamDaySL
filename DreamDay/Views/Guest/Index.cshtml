@@ -1,6 +1,6 @@
 ﻿@model List<DreamDay.Models.GuestModel>
 @{
-    ViewBag.Title = "Guest List";
+    ViewBag.Title = "Guest List & RSVPs";
 }
 <h2>Guest List</h2>
 <a href="@Url.Action("Create", "Guest")" class="btn btn-primary mb-2">Add Guest</a>
@@ -10,6 +10,7 @@
             <th>Name</th>
             <th>Email</th>
             <th>Meal Preference</th>
+            <th>RSVP</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -20,6 +21,7 @@
                 <td>@guest.Name</td>
                 <td>@guest.Email</td>
                 <td>@guest.MealPreference</td>
+                <td>@(guest.IsAttending ? "Yes" : "No")</td>
                 <td>
                     <a href="@Url.Action("Edit", "Guest", new { id = guest.Id })" class="btn btn-sm btn-warning">Edit</a>
                     <a href="@Url.Action("Delete", "Guest", new { id = guest.Id })" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this guest?');">Delete</a>

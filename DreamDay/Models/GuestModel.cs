@@ -17,6 +17,9 @@ namespace DreamDay.Models
         [Required]
         public MealPreference MealPreference { get; set; }
 
+        [Required]
+        public bool IsAttending { get; set; }
+
         public Guid WeddingId { get; set; }
 
         public IEnumerable<SelectListItem> MealOptions => new List<SelectListItem>

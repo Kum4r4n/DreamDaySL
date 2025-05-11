@@ -26,7 +26,8 @@ namespace DreamDay.Services
                 Name = x.Name,
                 Email = x.Email,
                 MealPreference = x.MealPreference,
-                WeddingId = wedding.Id
+                WeddingId = wedding.Id,
+                IsAttending = x.IsAttending
 
             }).ToList();
         }
@@ -43,7 +44,8 @@ namespace DreamDay.Services
                 Name = guest.Name,
                 Email = guest.Email,
                 MealPreference = guest.MealPreference,
-                WeddingId = guest.WeddingId
+                WeddingId = guest.WeddingId,
+                IsAttending = guest.IsAttending
             };
         }
 
@@ -59,7 +61,8 @@ namespace DreamDay.Services
                 Name = model.Name,
                 Email = model.Email,
                 MealPreference = model.MealPreference,
-                WeddingId = wedding.Id
+                WeddingId = wedding.Id,
+                IsAttending = model.IsAttending
             };
 
             await _dbContext.Guests.AddAsync(guest);
@@ -71,7 +74,8 @@ namespace DreamDay.Services
                 Name = guest.Name,
                 Email = guest.Email,
                 MealPreference = guest.MealPreference,
-                WeddingId = guest.WeddingId
+                WeddingId = guest.WeddingId,
+                IsAttending = guest.IsAttending
             };
 
             return guestModel;
@@ -87,6 +91,7 @@ namespace DreamDay.Services
             guest.Name = model.Name;
             guest.Email = model.Email;
             guest.MealPreference = model.MealPreference;
+            guest.IsAttending = model.IsAttending;
 
             await _dbContext.SaveChangesAsync();
 
@@ -96,7 +101,8 @@ namespace DreamDay.Services
                 Name = guest.Name,
                 Email = guest.Email,
                 MealPreference = guest.MealPreference,
-                WeddingId = guest.WeddingId
+                WeddingId = guest.WeddingId,
+                IsAttending = guest.IsAttending
             };
         }
 
