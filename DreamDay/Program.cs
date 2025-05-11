@@ -21,6 +21,7 @@ builder.Services.AddScoped<CoupleTimelineService>();
 builder.Services.AddScoped<PlannerService>();
 builder.Services.AddScoped<PlannerChecklistService>();
 builder.Services.AddScoped<PlannerNotesService>();
+builder.Services.AddScoped<PlannerReportsService>();
 
 builder.Services.AddScoped<AdminService>();
 

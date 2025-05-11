@@ -1,0 +1,47 @@
+﻿@model List<VendorReport>
+@{
+    ViewBag.Title = "Top 5 Most Assigned Vendors";
+}
+<h2>Top 5 Most Assigned Vendors</h2>
+<canvas id="vendorChart" width="400" height="200"></canvas>
+<table class="table mt-4">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Assignments</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Category</td>
+                <td>@item.Assignments</td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById('vendorChart');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: @Html.Raw(Json.Serialize(Model.Select(v => v.Name))),
+                datasets: [{
+                    label: 'Assignments',
+                    data: @Html.Raw(Json.Serialize(Model.Select(v => v.Assignments))),
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+    </script>
+}
