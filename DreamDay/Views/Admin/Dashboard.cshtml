@@ -1,5 +1,12 @@
 ﻿@{
     ViewBag.Title = "Admin Dashboard";
 }
-<h2>Welcome, Admin</h2>
-<p>Use the navigation menu to manage weddings, assign planners, and more.</p>
+<h2>System Overview</h2>
+<div class="row text-center">
+    <div class="col"><strong>Total Users:</strong> @ViewBag.UserCount</div>
+    <div class="col"><strong>Couples:</strong> @ViewBag.CoupleCount</div>
+    <div class="col"><strong>Planners:</strong> @ViewBag.PlannerCount</div>
+    <div class="col"><strong>Vendors:</strong> @ViewBag.VendorCount</div>
+</div>
+<hr />
+<a class="btn btn-primary mt-3" asp-action="Vendors">Manage Vendors</a>

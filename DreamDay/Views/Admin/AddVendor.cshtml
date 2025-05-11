@@ -1,0 +1,31 @@
+﻿@model VendorModel
+@{
+    ViewBag.Title = "Add Vendor";
+}
+<h2>Add Vendor</h2>
+<form asp-action="AddVendor" method="post">
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Description"></label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+    </div>
+    <div class="form-group">
+        <label asp-for="ContactInfo"></label>
+        <input asp-for="ContactInfo" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="PriceEstimate"></label>
+        <input asp-for="PriceEstimate" class="form-control" type="number" step="0.01" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Category"></label>
+        <input asp-for="Category" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-success mt-3">Save</button>
+    <a class="btn btn-secondary mt-3" asp-action="Vendors">Cancel</a>
+</form>

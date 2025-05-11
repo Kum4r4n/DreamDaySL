@@ -1,0 +1,35 @@
+﻿@model List<VendorModel>
+@{
+    ViewBag.Title = "Manage Vendors";
+}
+<h2>Vendor List</h2>
+<a class="btn btn-success mb-3" asp-action="AddVendor">Add Vendor</a>
+<a class="btn btn-secondary mb-3 ms-2" asp-action="Dashboard">Back to Dashboard</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>ContactInfo</th>
+            <th>Description</th>
+            <th>PriceEstimate</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var v in Model)
+        {
+            <tr>
+                <td>@v.Name</td>
+                <td>@v.Category</td>
+                <td>@v.ContactInfo</td>
+                <td>@v.Description</td>
+                <td>@v.PriceEstimate</td>
+                <td>
+                    <a class="btn btn-sm btn-warning" asp-action="EditVendor" asp-route-id="@v.Id">Edit</a>
+                    <a class="btn btn-sm btn-danger" asp-action="DeleteVendor" asp-route-id="@v.Id" onclick="return confirm('Delete this vendor?');">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
