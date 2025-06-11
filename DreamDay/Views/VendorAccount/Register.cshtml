@@ -1,0 +1,44 @@
+@model VendorRegisterModel
+@{
+    ViewBag.Title = "Vendor Register";
+}
+<h2 class="text-center">Vendor Registration</h2>
+<div class="container mt-4">
+    @using (Html.BeginForm("Register", "VendorAccount", FormMethod.Post))
+    {
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(m => m.Name)
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Email)
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Password)
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.ConfirmPassword)
+            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Category)
+            @Html.TextBoxFor(m => m.Category, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Description)
+            @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.ContactInfo)
+            @Html.TextBoxFor(m => m.ContactInfo, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.PriceEstimate)
+            @Html.TextBoxFor(m => m.PriceEstimate, new { @class = "form-control", type = "number", step = "0.01" })
+        </div>
+        <button type="submit" class="btn btn-success w-100 mt-3">Register</button>
+    }
+</div>

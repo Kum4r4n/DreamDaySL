@@ -41,5 +41,10 @@ public class ApplicaitonDbContext : DbContext
             .HasMany(w => w.Weddings)
             .WithOne(b => b.User)
             .HasForeignKey(b => b.UserId);
+
+        modelBuilder.Entity<User>()
+            .HasOne(u => u.Vendor)
+            .WithOne(v => v.User)
+            .HasForeignKey<Vendor>(v => v.UserId);
     }
 }

@@ -162,9 +162,26 @@ namespace DreamDay.Migrations
                     b.Property<decimal>("PriceEstimate")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
 
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
                     b.ToTable("Vendors");
+                });
+
+            modelBuilder.Entity("DreamDay.Entites.Vendor", b =>
+                {
+                    b.HasOne("DreamDay.Entites.User", "User")
+                        .WithOne("Vendor")
+                        .HasForeignKey("DreamDay.Entites.Vendor", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("DreamDay.Entites.Wedding", b =>
@@ -356,6 +373,7 @@ namespace DreamDay.Migrations
 
             modelBuilder.Entity("DreamDay.Entites.User", b =>
                 {
+                    b.Navigation("Vendor");
                     b.Navigation("Weddings");
                 });
 
