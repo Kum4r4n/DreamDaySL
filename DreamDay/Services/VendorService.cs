@@ -116,10 +116,10 @@ namespace DreamDay.Services
         public async Task<List<VendorModel>> GetAllVendorsAsync(string? search)
         {
             var data =  await _dbContext.Vendors
-                .Where(x => 
-                string.IsNullOrEmpty(search) || 
-                x.Name.ToLower().Contains(search.ToLower()) || 
-                x.Category.ToLower().Contains(search.ToLower()) || 
+                .Where(x =>
+                string.IsNullOrEmpty(search) ||
+                x.Name.ToLower().Contains(search.ToLower()) ||
+                x.Category.ToLower().Contains(search.ToLower()) ||
                 x.Description.ToLower().Contains(search.ToLower())
                 ).ToListAsync();
 
@@ -133,6 +133,47 @@ namespace DreamDay.Services
                 PriceEstimate = x.PriceEstimate
 
             }).ToList();
+        }
+
+        public async Task<VendorModel?> GetVendorByUserIdAsync(Guid userId)
+        {
+            var vendor = await _dbContext.Vendors.FirstOrDefaultAsync(x => x.UserId == userId);
+            if (vendor == null) return null;
+
+            return new VendorModel
+            {
+                Id = vendor.Id,
+                Name = vendor.Name,
+                Category = vendor.Category,
+                Description = vendor.Description,
+                ContactInfo = vendor.ContactInfo,
+                PriceEstimate = vendor.PriceEstimate
+            };
+        }
+
+        public async Task<VendorModel> AddOrUpdateVendorForUserAsync(Guid userId, VendorModel model)
+        {
+            var vendor = await _dbContext.Vendors.FirstOrDefaultAsync(x => x.UserId == userId);
+            if (vendor == null)
+            {
+                vendor = new Vendor
+                {
+                    Id = Guid.NewGuid(),
+                    UserId = userId
+                };
+                _dbContext.Vendors.Add(vendor);
+            }
+
+            vendor.Name = model.Name;
+            vendor.Category = model.Category;
+            vendor.Description = model.Description;
+            vendor.ContactInfo = model.ContactInfo;
+            vendor.PriceEstimate = model.PriceEstimate;
+
+            await _dbContext.SaveChangesAsync();
+
+            model.Id = vendor.Id;
+            return model;
         }
     }
 }

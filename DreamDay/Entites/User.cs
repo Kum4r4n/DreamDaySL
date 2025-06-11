@@ -11,4 +11,5 @@ public class User
     public Role Role { get; set; } = default!;
 
     public ICollection<Wedding> Weddings { get; set; } = new List<Wedding>();
+    public Vendor? Vendor { get; set; }
 }

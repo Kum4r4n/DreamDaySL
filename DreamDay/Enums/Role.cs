@@ -4,5 +4,6 @@ public enum Role
 {
     COUPLE = 0,
     PLANNER = 1,
-    ADMIN = 2
+    ADMIN = 2,
+    VENDOR = 3
 }

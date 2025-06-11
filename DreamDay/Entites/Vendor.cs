@@ -8,5 +8,8 @@
         public string Description { get; set; } = default!;
         public string? ContactInfo { get; set; }
         public decimal PriceEstimate { get; set; }
+
+        public Guid UserId { get; set; }
+        public User User { get; set; } = default!;
     }
 }
